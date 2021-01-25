@@ -106,13 +106,13 @@ p {
 .hidden {
   width: 300px;
   position: absolute;
-  font-size: 3rem;
+  font-size: 6rem;
   display: none;
   color: rgba(253,253,253);
 }
 
 .hidden.active {
-	animation: shrinkjump 1.5s ease-in-out;
+	animation: shrinkjump .5s ease-in-out;
 	transform-origin: bottom center;
   display: block;
   width: 100%;
@@ -121,17 +121,17 @@ p {
 
 @keyframes shrinkjump {
 	10%, 35% {
-		transform: scale(1.8) translate(0, 0);
+		/* transform: scale(1.8) translate(0, 0); */
     opacity: 0.9;
 	}
 	
 	45%, 50% {
-		transform: scale(1.4) translate(0, -150px);
-    opacity: 0.6;
+		/* transform: scale(1.4) translate(0, -150px); */
+    opacity: 0.4;
 	}
 	
 	80% {
-		transform: scale(1) translate(0, 0);
+		/* transform: scale(1) translate(0, 0); */
     opacity: 0;
 	}
 }
