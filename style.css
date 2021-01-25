@@ -54,12 +54,25 @@ h2 {
   margin-top: 0;
 }
 
+h6 {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 20px;
+}
+
 span {
   display: block;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 20px;
+  opacity: 0;
+}
+
+.showing {
+  display: block;
 }
 
 img {
@@ -91,27 +104,30 @@ p {
 }
 
 .hidden {
+  width: 300px;
   position: absolute;
-  font-size: 4rem;
-  top: 10%;
+  font-size: 3rem;
   display: none;
+  color: rgba(253,253,253);
 }
 
 .hidden.active {
-	animation: shrinkjump 1s ease-in;
+	animation: shrinkjump 1.5s ease-in-out;
 	transform-origin: bottom center;
   display: block;
+  width: 100%;
 }
+
 
 @keyframes shrinkjump {
 	10%, 35% {
-		transform: scale(2) translate(0, 0);
-    opacity: 1;
+		transform: scale(1.8) translate(0, 0);
+    opacity: 0.9;
 	}
 	
 	45%, 50% {
-		transform: scale(1) translate(0, -150px);
-    opacity: 0.5;
+		transform: scale(1.4) translate(0, -150px);
+    opacity: 0.6;
 	}
 	
 	80% {

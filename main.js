@@ -1,19 +1,19 @@
 const popCat = document.querySelector("img");
-const score = document.querySelector("span");
+const score = document.querySelector("h6");
 const resetBtn = document.querySelector("button");
-const hidden = document.querySelector(".hidden");
+const container = document.querySelector(".container");
 
-var audio = new Audio("audio/pop.mp3")
+var audio = new Audio("audio/pop.mp3");
 
 let popCount = 0;
 
-let foundHidden = false;
-
 function rotateCat() {
   let randomNum = Math.round(Math.random());
-  Boolean(randomNum) === true ? popCat.classList.add("rotate") : popCat.classList.remove("rotate");
-}
+  Boolean(randomNum) === true
+    ? popCat.classList.add("rotate")
+    : popCat.classList.remove("rotate");
 
+}
 
 function saveScore(popCount) {
   localStorage.setItem("count", popCount);
@@ -21,7 +21,9 @@ function saveScore(popCount) {
 
 function loadScore() {
   popCount = localStorage.getItem("count");
-  localStorage.getItem("count") === null ? score.innerText = 'Press P and record your score!' : score.innerText = `Your POP Count : ${localStorage.getItem("count")}`;
+  localStorage.getItem("count") === null
+    ? (score.innerText = "Press P and record your score!")
+    : (score.innerText = `Your POP Count : ${localStorage.getItem("count")}`);
 }
 
 function keyDown(event) {
@@ -31,16 +33,20 @@ function keyDown(event) {
     audio.play();
     rotateCat();
   } else if (event.code === "KeyS") {
-    if (foundHidden === false) {
-      alert("You Are Namung!");
-      foundHidden = true;
-    } else {
     popCat.src = "images/pop.png";
+    const hidden = document.createElement("span");
+    hidden.classList.add("hidden");
     hidden.classList.add("active");
+    hidden.innerText = "섹스";
+    container.appendChild(hidden);
     audio.currentTime = 0;
     audio.play();
     rotateCat();
-  }
+    document.querySelectorAll("span").forEach((e) => {
+      e.style.top = `${Math.round(Math.random() * 20)}%`
+      e.style.left = `${Math.round(Math.random() * -5)}%`
+      e.style.right = `${Math.round(Math.random() * 5)}%`
+    });
   }
 }
 
@@ -52,7 +58,6 @@ function keyUp(event) {
     saveScore(popCount);
   } else if (event.code === "KeyS") {
     popCat.src = "images/normal.png";
-    hidden.classList.remove("active");
     popCount++;
     score.innerText = `Your POP Count : ${popCount}`;
     saveScore(popCount);
@@ -72,17 +77,16 @@ function touchEnd() {
   saveScore(popCount);
 }
 
-
 function init() {
-  popCat.addEventListener('touchstart', touchStart);
-  popCat.addEventListener('touchend', touchEnd);
+  popCat.addEventListener("touchstart", touchStart);
+  popCat.addEventListener("touchend", touchEnd);
   window.onkeydown = (e) => keyDown(e);
   window.onkeyup = (e) => keyUp(e);
-  resetBtn.addEventListener('click', () => {
-    localStorage.removeItem('count');
+  resetBtn.addEventListener("click", () => {
+    localStorage.removeItem("count");
     popCount = 0;
-    score.innerText = 'Press P and record your score!'
-  })
+    score.innerText = "Press P and record your score!";
+  });
   loadScore();
 }
 
