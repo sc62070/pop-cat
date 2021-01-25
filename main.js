@@ -24,6 +24,7 @@ function loadScore() {
 function keyDown(event) {
   if (event.code === "KeyP") {
     popCat.src = "images/pop.png";
+    audio.currentTime = 0;
     audio.play();
     rotateCat();
   }
