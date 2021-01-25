@@ -7,6 +7,8 @@ var audio = new Audio("audio/pop.mp3")
 
 let popCount = 0;
 
+let foundHidden = false;
+
 function rotateCat() {
   let randomNum = Math.round(Math.random());
   Boolean(randomNum) === true ? popCat.classList.add("rotate") : popCat.classList.remove("rotate");
@@ -29,11 +31,16 @@ function keyDown(event) {
     audio.play();
     rotateCat();
   } else if (event.code === "KeyS") {
+    if (foundHidden === false) {
+      alert("You Are Namung!");
+      foundHidden = true;
+    } else {
     popCat.src = "images/pop.png";
     hidden.classList.add("active");
     audio.currentTime = 0;
     audio.play();
     rotateCat();
+  }
   }
 }
 
