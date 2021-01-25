@@ -1,6 +1,7 @@
 const popCat = document.querySelector("img");
 const score = document.querySelector("span");
 const resetBtn = document.querySelector("button");
+const hidden = document.querySelector(".hidden");
 
 var audio = new Audio("audio/pop.mp3")
 
@@ -27,12 +28,24 @@ function keyDown(event) {
     audio.currentTime = 0;
     audio.play();
     rotateCat();
+  } else if (event.code === "KeyS") {
+    popCat.src = "images/pop.png";
+    hidden.classList.add("active");
+    audio.currentTime = 0;
+    audio.play();
+    rotateCat();
   }
 }
 
 function keyUp(event) {
   if (event.code === "KeyP") {
     popCat.src = "images/normal.png";
+    popCount++;
+    score.innerText = `Your POP Count : ${popCount}`;
+    saveScore(popCount);
+  } else if (event.code === "KeyS") {
+    popCat.src = "images/normal.png";
+    hidden.classList.remove("active");
     popCount++;
     score.innerText = `Your POP Count : ${popCount}`;
     saveScore(popCount);

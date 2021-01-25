@@ -90,6 +90,36 @@ p {
   transform: rotateY(180deg);
 }
 
+.hidden {
+  position: absolute;
+  font-size: 4rem;
+  top: 10%;
+  display: none;
+}
+
+.hidden.active {
+	animation: shrinkjump 1s ease-in;
+	transform-origin: bottom center;
+  display: block;
+}
+
+@keyframes shrinkjump {
+	10%, 35% {
+		transform: scale(2) translate(0, 0);
+    opacity: 1;
+	}
+	
+	45%, 50% {
+		transform: scale(1) translate(0, -150px);
+    opacity: 0.5;
+	}
+	
+	80% {
+		transform: scale(1) translate(0, 0);
+    opacity: 0;
+	}
+}
+
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 3.5em;
